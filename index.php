@@ -22,13 +22,13 @@ $from = $data['from'];
 //$unixtime = $data['created_at'];
 //$unixtime = (int)$unixtime;
 $font = 'msyh.ttf';
-$box = imagettfbbox ( 20 , 0 , $font , $content.$from ); //测量距离
+$box = imagettfbbox ( 20 , 0 , $font , $content.'   '.$from ); //测量距离
 $min_x = min( array($box[0], $box[2], $box[4], $box[6]) ); 
 $max_x = max( array($box[0], $box[2], $box[4], $box[6]) ); 
 $min_y = min( array($box[1], $box[3], $box[5], $box[7]) ); 
 $max_y = max( array($box[1], $box[3], $box[5], $box[7]) ); 
-$width  = ( $max_x - $min_x ); 
-$height = ( $max_y - $min_y ); 
+$width = abs($box[4] - $box[0]);
+$height = abs($box[5] - $box[1]);
 $left   = abs( $min_x ) + $width; 
 $top    = abs( $min_y ) + $height; 
 //echo $width.','.$height;
@@ -47,16 +47,3 @@ imagettftext ( $im , 15 , 0 , $min_x+10, $height , $black , $font , $content.'  
 imagepng($im);
 imagedestroy($im);
 ?>
-<?php
-    $counter = intval(file_get_contents("counter.dat"));  
-     $_SESSION['#'] = true;  
-     $counter++;  
-     $fp = fopen("counter.dat","w");
-     //$fpip = fopen("IP.dat","w");
-     fwrite($fp, $counter);  
-     //fwrite($fpip, $ipold+' '+$ip);
-     fclose($fp); 
-     //fclose($fpip);
-
-
- ?>
