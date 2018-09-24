@@ -47,3 +47,16 @@ imagettftext ( $im , 15 , 0 , $min_x+10, $height , $black , $font , $content.'  
 imagepng($im);
 imagedestroy($im);
 ?>
+<?php
+    $counter = intval(file_get_contents("counter.dat"));  
+     $_SESSION['#'] = true;  
+     $counter++;  
+     $fp = fopen("counter.dat","w");
+     //$fpip = fopen("IP.dat","w");
+     fwrite($fp, $counter);  
+     //fwrite($fpip, $ipold+' '+$ip);
+     fclose($fp); 
+     //fclose($fpip);
+
+
+ ?>
