@@ -1,0 +1,2 @@
+# HitokotoToPNG
+运用PHP将Hitokoto语言转换为PNG
